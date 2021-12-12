@@ -54,6 +54,7 @@ public class TablaHash {
             System.out.println();
         }
     }
+    
     public void nombre(int n,String elementos[]){
         String[] nombre=new String[n];
         nombre[0]="Lennon";
@@ -68,7 +69,8 @@ public class TablaHash {
             System.out.println(elementos[i]);
         }
     }
-        public void generaValores(String [] elementos,int n){
+    
+    public void generaValores(String [] elementos,int n){
         for (int i = 0; i <n; i++) {
             int aleatorio = (int) (Math.random()*(-9999999)+20000000);
             elementos[i] = ""+20+aleatorio;
@@ -79,5 +81,37 @@ public class TablaHash {
         }
         System.out.println();
     }
+        
+    public String buscarClave(String elemento,int n,String elementos[]){
+        String[] nombre=new String[n];
+        nombre[0]="Lennon";
+        nombre[1]="Star";
+        nombre[2]="Ringo";
+        nombre[3]="Winston";
+        nombre[4]="Ono";
+        for(int i=0;i<n;i++){
+            elementos[i]=String.format(" |%3s"+" ",arreglo[i])+" "+nombre[i];
+        }
+        for(int i=0;i<n;i++){
+            System.out.println(elementos[i]);
+        }
+        indiceArreglo=Integer.parseInt(elemento) % (tamaño-1);
+        contador=0;
+        while(Integer.parseInt(arreglo[indiceArreglo])!=-1){
+            if(arreglo[indiceArreglo].equals(elemento)){
+               System.out.println("La cuenta ( "+elemento+" ) a nombre de "+nombre[indiceArreglo]);
+            }
+            indiceArreglo++;
+            indiceArreglo%=tamaño;
+            contador++;
+            if(contador>(tamaño-1)){
+                break;
+            }
+        }
+        String cadena="La clave "+elemento+" No fue encontrada ";
+        return  cadena;
+    }
+
 }
+
 
