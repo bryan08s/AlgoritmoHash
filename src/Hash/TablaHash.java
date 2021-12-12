@@ -1,12 +1,8 @@
 package Hash;
-/**
- *
- * @author Bryan Saim
- */
 import java.util.Arrays;
 public class TablaHash {
     String [] arreglo;
-    int tamaño,contador;
+    int tamaño,contador,indiceArreglo;
 
     public TablaHash(int tam) {
         tamaño = tam;
@@ -16,7 +12,7 @@ public class TablaHash {
     public void funcionHash(String []cadenaArreglo){
         for(int i=0;i< cadenaArreglo.length;i++){
             String elemento= cadenaArreglo[i];
-            int indiceArreglo=Integer.parseInt(elemento)%(tamaño-1);
+            indiceArreglo=Integer.parseInt(elemento)%(tamaño-1);
             System.out.println("El indice es "+indiceArreglo+" Para el elemento "+ elemento);
             //colisiones 
             while(Integer.parseInt(arreglo[indiceArreglo])!=-1){
@@ -28,46 +24,27 @@ public class TablaHash {
         }
     }
     
-    public String buscarClave(String elemento){
-        int indiceArreglo=Integer.parseInt(elemento) % (tamaño-1);
-        contador=0;
-        
-        while(Integer.parseInt(arreglo[indiceArreglo])!=-1){
-            if(arreglo[indiceArreglo].equals(elemento)){
-                System.out.println("El elemento "+elemento+ " fue encontrado en el indice "+ indiceArreglo);
-                return arreglo[indiceArreglo];
-            }
-            indiceArreglo++;
-            indiceArreglo%=tamaño;
-            contador++;
-            if(contador>(tamaño-1)){
-                break;
-            }
-        }
-        return  "La clave "+elemento+" No fue encontrada ";
-    }
-    
-    public void mostrar(){
+    public void mostrar(int n){
         int incremento=0,i,j;
         for( i=0;i<1;i++){
-            incremento+=8;
+            incremento+=n;
             for( j=0;j<71;j++){
                 System.out.print("-");
             }
             System.out.println();
-            for(j=incremento-8;j<incremento;j++){
-                System.out.format("|%3s"+" ",j);
+            for(j=incremento-n;j<incremento;j++){
+                System.out.format(" |    %3s"+"     ",j);
             }
             System.out.println("|");
-            for(int n=0;n<71;n++){
+            for(int x=0;x<71;x++){
                 System.out.print("-");
             }
             System.out.println();
-            for(j=incremento-8;j<incremento;j++){
+            for(j=incremento-n;j<incremento;j++){
                 if(arreglo[j].equals("-1")){
-                    System.out.print("|   ");
+                    System.out.print("|");
                 }else{
-                    System.out.print(String.format("|%3s"+" ", arreglo[j]));
+                    System.out.print(String.format(" | %3s"+" ",arreglo[j]));
                 }
             }
             System.out.println("|");
@@ -77,4 +54,30 @@ public class TablaHash {
             System.out.println();
         }
     }
+    public void nombre(int n,String elementos[]){
+        String[] nombre=new String[n];
+        nombre[0]="Lennon";
+        nombre[1]="Star";
+        nombre[2]="Ringo";
+        nombre[3]="Winston";
+        nombre[4]="Ono";
+        for(int i=0;i<n;i++){
+            elementos[i]=String.format(" |%3s"+" ",arreglo[i])+" "+nombre[i];
+        }
+        for(int i=0;i<n;i++){
+            System.out.println(elementos[i]);
+        }
+    }
+        public void generaValores(String [] elementos,int n){
+        for (int i = 0; i <n; i++) {
+            int aleatorio = (int) (Math.random()*(-9999999)+20000000);
+            elementos[i] = ""+20+aleatorio;
+        }
+        System.out.println("Elementos:");
+        for(String e: elementos){
+            System.out.print(e+" ");
+        }
+        System.out.println();
+    }
 }
+
